@@ -4,5 +4,10 @@
   "packages": [
     "packages/*"
   ],
-  "version": "2.4.1"
+  "command": {
+    "publish": {
+      "registry": "http://111.231.222.46:4873/"
+    }
+  },
+  "version": "2.4.3"
 }
