@@ -85,7 +85,7 @@ export default class Slide implements PluginAPI {
     if (this.scroll.scroller.content.children.length <= 0) {
       warn(
         `slide need at least one slide page to be initialised.` +
-          `please check your DOM layout.`
+        `please check your DOM layout.`
       )
       return false
     }
@@ -543,6 +543,9 @@ export default class Slide implements PluginAPI {
   }
 
   private getEaseTime(deltaX: number, deltaY: number): number {
+    if (this.options.speed == 0) {
+      return this.options.speed
+    }
     return (
       this.options.speed ||
       Math.max(
@@ -568,10 +571,10 @@ export default class Slide implements PluginAPI {
     const newPage =
       this.satisfyThreshold(newX, newY) || animater.forceStopped
         ? this.pages.getPageByDirection(
-            this.nearestPage(newX, newY),
-            scrollBehaviorX.direction,
-            scrollBehaviorY.direction
-          )
+          this.nearestPage(newX, newY),
+          scrollBehaviorX.direction,
+          scrollBehaviorY.direction
+        )
         : this.pages.currentPage
 
     scrollMeta.time = this.getEaseTime(
