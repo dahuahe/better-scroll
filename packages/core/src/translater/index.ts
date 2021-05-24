@@ -64,6 +64,8 @@ export default class Translater {
       point
     )
     this.style[style.transform as any] = transformStyle.join(' ')
+    this.style['-webkit-transform' as any] = transformStyle.join(' ')
+    this.style['-ms-transform' as any] = transformStyle.join(' ')
     this.hooks.trigger(this.hooks.eventTypes.translate, point)
   }
 
