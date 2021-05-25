@@ -302,16 +302,18 @@ export default class SlidePages {
 
   private checkSlideLoop() {
     this.wannaLoop = this.slideOptions.loop
-    if (this.pagesMatrix.pageLengthOfX > 1) {
-      this.slideX = true
-    } else {
-      this.slideX = false
-    }
-    if (this.pagesMatrix.pages[0] && this.pagesMatrix.pageLengthOfY > 1) {
-      this.slideY = true
-    } else {
-      this.slideY = false
-    }
+    // if (this.pagesMatrix.pageLengthOfX > 1) {
+    //   this.slideX = true
+    // } else {
+    //   this.slideX = false
+    // }
+    // if (this.pagesMatrix.pages[0] && this.pagesMatrix.pageLengthOfY > 1) {
+    //   this.slideY = true
+    // } else {
+    //   this.slideY = false
+    // }
+    this.slideX = this.slideOptions.slideX
+    this.slideY = this.slideOptions.slideY
     this.loopX = this.wannaLoop && this.slideX
     this.loopY = this.wannaLoop && this.slideY
 

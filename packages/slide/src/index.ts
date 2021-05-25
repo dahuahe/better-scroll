@@ -16,6 +16,8 @@ import { BASE_PAGE } from './constants'
 
 export interface SlideConfig {
   loop: boolean
+  slideX: boolean
+  slideY: boolean
   threshold: number
   speed: number
   easing: {
