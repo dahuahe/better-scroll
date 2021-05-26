@@ -18,6 +18,10 @@ const translaterMetaData: TranslaterMetaData = {
   x: ['translateX', 'px'],
   y: ['translateY', 'px'],
 }
+const CssTranslateMetaData: TranslaterMetaData = {
+  x: ['left', 'px'],
+  y: ['top', 'px'],
+}
 
 export default class Translater {
   content: HTMLElement
@@ -44,17 +48,22 @@ export default class Translater {
   }
 
   translate(point: TranslaterPoint) {
-    let transformStyle = [] as string[]
+    let transformStyle = ["position:relative"] as string[]
     Object.keys(point).forEach((key) => {
-      if (!translaterMetaData[key]) {
+      if (!CssTranslateMetaData[key]) {
         return
       }
-      const transformFnName = translaterMetaData[key][0]
+      const transformFnName = CssTranslateMetaData[key][0]
       if (transformFnName) {
-        const transformFnArgUnit = translaterMetaData[key][1]
+        // const transformFnArgUnit = CssTranslateMetaData[key][1]
+        // const transformFnArg = point[key]
+        // transformStyle.push(
+        //   `${transformFnName}(${transformFnArg}${transformFnArgUnit})`
+        // )
+        const transformFnArgUnit = CssTranslateMetaData[key][1]
         const transformFnArg = point[key]
         transformStyle.push(
-          `${transformFnName}(${transformFnArg}${transformFnArgUnit})`
+          `${transformFnName}:${transformFnArg}${transformFnArgUnit}`
         )
       }
     })
@@ -63,9 +72,9 @@ export default class Translater {
       transformStyle,
       point
     )
-    this.style[style.transform as any] = transformStyle.join(' ')
-    this.style.webkitTransform = transformStyle.join(' ')
-    this.style['msTransform' as any] = transformStyle.join(' ')
+    this.style.cssText = transformStyle.join(';')
+    // this.style.webkitTransform = transformStyle.join(' ')
+    // this.style['msTransform' as any] = transformStyle.join(' ')
     this.hooks.trigger(this.hooks.eventTypes.translate, point)
   }
 
