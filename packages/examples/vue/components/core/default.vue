@@ -65,7 +65,7 @@ export default {
   methods: {
     init() {
       this.bs = new BScroll(this.$refs.scroll, {
-        probeType: 3,
+        probeType: 0,
         useTransition: false,
         click: true,
       })
