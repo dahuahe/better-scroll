@@ -94,7 +94,7 @@ export class EventEmitter {
       let [fn, context] = event
       if (fn) {
         ret = fn.apply(context, args)
-        if (ret === true) {
+        if (ret) {
           return ret
         }
       }
