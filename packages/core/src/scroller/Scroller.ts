@@ -586,7 +586,7 @@ export default class Scroller implements ExposedAPI {
       return
     }
     if(hookData){
-      return this.scrollTo(hookData.left||pos.left, hookData.top||pos.top, time, easing)
+      return this.scrollTo(hookData.left, hookData.top, time, easing)
     }
     this.scrollTo(pos.left, pos.top, time, easing)
   }
