@@ -579,13 +579,15 @@ export default class Scroller implements ExposedAPI {
       offsetY,
       this.scrollBehaviorY
     )
-
+      const hookData= this.hooks.trigger(this.hooks.eventTypes.scrollToElement, targetEle, pos)
     if (
-      this.hooks.trigger(this.hooks.eventTypes.scrollToElement, targetEle, pos)
+      hookData===true
     ) {
       return
     }
-
+    if(hookData){
+      return this.scrollTo(hookData.left||pos.left, hookData.top||pos.top, time, easing)
+    }
     this.scrollTo(pos.left, pos.top, time, easing)
   }
 
